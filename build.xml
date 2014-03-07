@@ -39,7 +39,7 @@
     		<javac srcdir="${client-source-directory}" destdir="${client-classes-directory}" />
   	</target>
 	
-	<target name="war" depends="build-server">
+	<target name="jar" depends="build-server">
     		<echo message="Creating WAR file" />
 		<delete file="${build-directory}/${war-file-name}" />
     		<mkdir dir="${build-directory}" />
