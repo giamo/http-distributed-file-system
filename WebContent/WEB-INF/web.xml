@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>wwwx</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>RichiestaCartella</servlet-name>
+		<servlet-class>server.servlet.RichiestaCartella</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RichiestaCartella</servlet-name>
+		<url-pattern>/server/servlet/RichiestaCartella</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DownloadFile</servlet-name>
+		<servlet-class>server.servlet.DownloadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownloadFile</servlet-name>
+		<url-pattern>/server/servlet/DownloadFile</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ModificaCartella</servlet-name>
+		<servlet-class>server.servlet.ModificaCartella</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModificaCartella</servlet-name>
+		<url-pattern>/server/servlet/ModificaCartella</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UploadFile</servlet-name>
+		<servlet-class>server.servlet.UploadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadFile</servlet-name>
+		<url-pattern>/server/servlet/UploadFile</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Proprieta</servlet-name>
+		<servlet-class>server.servlet.Proprieta</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Proprieta</servlet-name>
+		<url-pattern>/server/servlet/Proprieta</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+        <listener-class>server.management.ServerStart</listener-class>
+	</listener>
+
+	
+</web-app>

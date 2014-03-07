@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="HTTP Distributed File System" basedir="." default="info">
+	<property name="war-file-name" value="Dfilesystem.war" />
+	<property name="jar-file-name" value="Dfilesystem-client.jar" />
+	<property name="server-source-directory" value="src/server" />
+	<property name="client-source-directory" value="src/client" />
+	<property name="server-classes-directory" value="bin/classes server" />
+	<property name="client-classes-directory" value="bin/classes client" />
+	<property name="web-directory" value="WebContent" />
+	<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+		<format property="year-month-day" pattern="yyyy-MM-dd" locale="en" />
+	</tstamp>
+	<property name="build-directory" value="build" />
+
+	<target name="info">
+    		<echo message="Compilazione del progetto" />
+  	</target>
+
+	<target name="build-server" depends="">
+    		<echo message="Compiling server" />
+		<delete dir="${server-classes-directory}" />
+    		<mkdir dir="${server-classes-directory}" />
+    		<javac srcdir="${server-source-directory}" destdir="${server-classes-directory}">
+			<classpath>
+				<fileset dir="${web-directory}/WEB-INF/lib">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+  	</target>
+
+	<target name="build-client" depends="">
+    		<echo message="Compiling client" />
+		<delete dir="${client-classes-directory}" />
+    		<mkdir dir="${client-classes-directory}" />
+    		<javac srcdir="${client-source-directory}" destdir="${client-classes-directory}" />
+  	</target>
+	
+	<target name="war" depends="build-server">
+    		<echo message="Creating WAR file" />
+		<delete file="${build-directory}/${war-file-name}" />
+    		<mkdir dir="${build-directory}" />
+    		<war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+			<classes dir="${server-classes-directory}" />
+			<fileset dir="${web-directory}">
+				<exclude name="WEB-INF/**/*" />
+				<exclude name="META-INF/**/*" />
+				<include name="**/*" />
+			</fileset>
+    		</war>
+  	</target>
+
+	<target name="jar" depends="build-client">
+		<mkdir dir="${build-directory}" />
+		<delete file="${build-directory}/${jar-file-name}" />
+		<jar destfile="${build-directory}/${jar-file-name}" basedir="${client-classes-directory}">
+        		<manifest>
+        		        <attribute name="Main-Class" value="client.avvio.Main"/>
+        		</manifest>
+		</jar>
+	</target>
+
+</project> 
